@@ -1,5 +1,20 @@
 class Variable
 
+     NAME_REGEX = /^#\(([^\)]+)\)/.freeze()
+
+     def initialize(string)
+            if (match = NAME_REGEX.match(string))
+                @name = match[1]       
+            end
+     end
+
+     def to_s
+        "#(#{@name})"
+     end
+
+     def name
+        @name
+     end
 end
 
 class Hyperstring
@@ -22,7 +37,7 @@ class Hyperstring
             items = []
             while not rest.empty?
                     if (match = STARTING_TAG.match(rest))
-                            items.push(match[1])
+                            items.push(Variable.new(match[1]))
                             rest = match[2]
                     elsif (match = STARTING_LITERAL.match(rest))
                             items.push(match[1])
