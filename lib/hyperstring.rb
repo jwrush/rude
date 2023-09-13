@@ -11,14 +11,6 @@ class Hyperstring
             @items = parse(string)
         end
 
-        def starting_tag
-            STARTING_TAG
-        end
-
-        def starting_literal
-            STARTING_LITERAL
-        end
-
         def items
             @items
         end
